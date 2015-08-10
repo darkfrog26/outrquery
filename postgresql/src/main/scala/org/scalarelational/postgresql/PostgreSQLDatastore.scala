@@ -82,7 +82,7 @@ abstract class PostgreSQLDatastore private() extends SQLDatastore with Logging w
     } else if (create.dataType.isInstanceOf[ObjectSerializationConverter[_]]) {
       "BYTEA"
     } else if (create.dataType == blobDataType) {
-      "BYTEA"
+      "OID"
     } else {
       super.columnSQLType(create)
     }
