@@ -8,7 +8,8 @@ import org.powerscala.property.Property
 import org.scalarelational.column.ColumnPropertyContainer
 import org.scalarelational.column.property.{AutoIncrement, Polymorphic, Unique}
 import org.scalarelational.datatype._
-import org.scalarelational.instruction.ddl.CreateColumn
+import org.scalarelational.instruction.CallableInstruction
+import org.scalarelational.instruction.ddl.{CreateColumn, CreateIndex}
 import org.scalarelational.model._
 import org.scalarelational.op.{Condition, RegexCondition}
 import org.scalarelational.result.ResultSetIterator
@@ -82,7 +83,7 @@ abstract class PostgreSQLDatastore private() extends SQLDatastore with Logging w
     } else if (create.dataType.isInstanceOf[ObjectSerializationConverter[_]]) {
       "BYTEA"
     } else if (create.dataType == blobDataType) {
-      "BYTEA"
+      "OID"
     } else {
       super.columnSQLType(create)
     }
@@ -126,5 +127,37 @@ abstract class PostgreSQLDatastore private() extends SQLDatastore with Logging w
       s"${c.column.longName} ${if (c.not) "!~ " else ""}~ ?"
     }
     case _ => super.condition2String(condition, args)
+  }
+
+  override def ddl(create: CreateIndex): List[CallableInstruction] = {
+    val b = new StringBuilder
+    b.append("DO $$ ")
+    b.append("BEGIN ")
+    if (create.ifNotExists) {
+      b.append("IF NOT EXISTS (")
+      b.append("SELECT 1 ")
+      b.append("FROM pg_class c ")
+      b.append("JOIN  pg_namespace n ON n.oid = c.relnamespace ")
+      b.append("WHERE c.relname = '" + create.name + "' ")
+      b.append("AND n.nspname = 'public'")
+      b.append(") THEN ")
+    }
+    b.append("CREATE ")
+    if (create.unique) {
+      b.append ("UNIQUE ")
+    }
+    b.append("INDEX ")
+    b.append(create.name)
+    b.append (" ON ")
+    b.append(create.tableName)
+    b.append("(")
+    b.append(create.columns.mkString(", "))
+    b.append(");")
+
+    if (create.ifNotExists) {
+      b.append(" END IF;")
+    }
+    b.append("END$$;")
+    List(CallableInstruction(b.toString()))
   }
 }

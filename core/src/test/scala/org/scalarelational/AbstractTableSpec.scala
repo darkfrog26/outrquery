@@ -447,7 +447,7 @@ trait AbstractTableSpec extends WordSpec with Matchers {
       }
     }
     "insert a Blob entry" in {
-      session {
+      transaction {
         dataId = insert(data.content(new SerialBlob("test using blob".getBytes("UTF-8")))).result
         dataId should equal (1)
       }
