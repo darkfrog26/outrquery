@@ -101,5 +101,5 @@ object Dependencies {
   val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5" % "test"
   val reactify = "com.outr" %%  "reactify" % "3.0.3"
   val enumeratum = "com.beachape" %% "enumeratum" % "1.5.13"
-  val logging = "com.outr" %% "scribe-slf4j" % "2.7.0"
+  val logging = "com.outr" %% "scribe-slf4j" % "2.7.13"
 }
