@@ -89,8 +89,8 @@ object Details {
   val developerName = "Matt Hicks"
   val developerURL = "http://matthicks.com"
 
-  val scalaVersion = "2.12.7"
-  val scalaVersions = List("2.12.7", "2.11.12")
+  val scalaVersion = "2.12.19"
+  val scalaVersions = List("2.12.19", "2.11.12")
 }
 
 object Dependencies {
