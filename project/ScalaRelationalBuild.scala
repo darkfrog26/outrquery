@@ -47,7 +47,7 @@ object ScalaRelationalBuild extends Build {
       Resolver.sonatypeRepo("releases"),
       Resolver.typesafeRepo("releases")
     ),
-    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full),
+    addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
     publishArtifact in Test := false,
     pomExtra := <url>{Details.url}</url>
       <licenses>
