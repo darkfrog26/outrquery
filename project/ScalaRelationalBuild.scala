@@ -98,7 +98,7 @@ object Dependencies {
   val h2database = "com.h2database" % "h2" % "1.4.197"
   val mariadbdatabase = "mysql" % "mysql-connector-java" % "8.0.15"
   val postgresqldatabase = "org.postgresql" % "postgresql" % "42.2.5"
-  val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5" % "test"
+  val scalaTest = "org.scalatest" %% "scalatest" % "3.0.9" % "test"
   val reactify = "com.outr" %%  "reactify" % "3.0.3"
   val enumeratum = "com.beachape" %% "enumeratum" % "1.5.13"
   val logging = "com.outr" %% "scribe-slf4j" % "2.7.0"
