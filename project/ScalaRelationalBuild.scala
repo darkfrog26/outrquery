@@ -95,7 +95,7 @@ object Details {
 
 object Dependencies {
   val hikariCP = "com.zaxxer" % "HikariCP" % "3.3.1"
-  val h2database = "com.h2database" % "h2" % "1.4.197"
+  val h2database = "com.h2database" % "h2" % "1.4.200"
   val mariadbdatabase = "mysql" % "mysql-connector-java" % "8.0.15"
   val postgresqldatabase = "org.postgresql" % "postgresql" % "42.2.5"
   val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5" % "test"
