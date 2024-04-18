@@ -99,7 +99,7 @@ object Dependencies {
   val mariadbdatabase = "mysql" % "mysql-connector-java" % "8.0.15"
   val postgresqldatabase = "org.postgresql" % "postgresql" % "42.2.5"
   val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5" % "test"
-  val reactify = "com.outr" %%  "reactify" % "3.0.3"
+  val reactify = "com.outr" %%  "reactify" % "3.0.6"
   val enumeratum = "com.beachape" %% "enumeratum" % "1.5.13"
   val logging = "com.outr" %% "scribe-slf4j" % "2.7.0"
 }
